@@ -11,37 +11,26 @@ import { ProductService } from './product.service';
 export class ProductListComponent implements OnInit, AfterViewInit {
     pageTitle: string = 'Product List';
     showImage: boolean;
+    listFilter: string; 
 
     imageWidth: number = 50;
     imageMargin: number = 2;
     errorMessage: string;
 
-    @ViewChild('filterElement') filterElementRef: ElementRef;
-    // @ViewChildren('filterElement, nameElement')
-    @ViewChildren(NgModel)
-    inputElementRef: QueryList<ElementRef>;
-
-    private _listFilter: string;
-
-    get listFilter(): string {
-        return this._listFilter;
-    }
-
-    set listFilter(value: string){
-        this._listFilter = value;
-        this.performFilter(this._listFilter);
-    }
+    @ViewChild('filterElement') filterElementRef: ElementRef; //native html element DOM
+    @ViewChild(NgModel) filterInput: NgModel; //access data structures, state model (ex.: dirty, valid, reset etc etc)
 
     filteredProducts: IProduct[];
     products: IProduct[];
 
     constructor(private productService: ProductService) { 
-
     }
 
     ngAfterViewInit(): void {
+        this.filterInput.valueChanges.subscribe(
+            () => this.performFilter(this.listFilter)
+        );
         this.filterElementRef.nativeElement.focus();
-        console.log(this.inputElementRef)
     }
 
     ngOnInit(): void {
