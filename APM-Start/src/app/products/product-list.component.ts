@@ -38,6 +38,10 @@ export class ProductListComponent implements OnInit, AfterViewInit {
             (error: any) => this.errorMessage = <any>error
         );
     }
+
+    onValueChange(value: string): void {
+        this.performFilter(value);
+    }
     
     toggleImage(): void {
         this.showImage = !this.showImage;
