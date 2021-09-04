@@ -1,10 +1,16 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 
 @Injectable()
-export class ProductParameterService {
+export class ProductParameterService implements OnDestroy {
   showImage: boolean;
   filterBy: string;
 
-  constructor() { }
+  constructor() { 
+    console.log('service created');
+  }
+
+  ngOnDestroy(): void {
+    console.log('>>> service destroyed');
+  }
 
 }
