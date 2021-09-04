@@ -55,7 +55,7 @@ export class ProductService {
         return this.updateProduct(product, headers);
     }
 
-    deleteProduct(id: number): Observable<IProduct> {
+    deleteProduct(id: number): Observable<IProduct> {  
         const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
 
         const url = `${this.productsUrl}/${id}`; 
