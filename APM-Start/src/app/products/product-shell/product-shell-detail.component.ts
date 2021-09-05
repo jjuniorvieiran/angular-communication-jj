@@ -8,6 +8,11 @@ import { IProduct } from '../product';
 })
 export class ProductShellDetailComponent implements OnInit {
     pageTitle: string = 'Product Detail';
+    
+    //the get is necessary to access the service values 
+    get product(): IProduct | null { 
+        return this.productService.currentProduct;
+    }
 
     constructor(private productService: ProductService) { }
 
