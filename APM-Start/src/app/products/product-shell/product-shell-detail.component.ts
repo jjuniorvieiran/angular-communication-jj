@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../product.service';
 import { IProduct } from '../product';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
     selector: 'pm-product-shell-detail',
@@ -9,14 +10,19 @@ import { IProduct } from '../product';
 export class ProductShellDetailComponent implements OnInit {
     pageTitle: string = 'Product Detail';
     
-    //the get is necessary to access the service values 
-    get product(): IProduct | null { 
-        return this.productService.currentProduct;
-    }
+    product: IProduct | null;
+    sub: Subscription;
 
     constructor(private productService: ProductService) { }
 
     ngOnInit() {
+        this.sub = this.productService.selectedProductChanges$.subscribe(
+            selectedProduct => this.product = selectedProduct
+        );
+    }
+
+    ngOnDestroy(): void {
+        this.sub.unsubscribe();
     }
 
 }
