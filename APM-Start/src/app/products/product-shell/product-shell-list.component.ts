@@ -16,6 +16,7 @@ export class ProductShellListComponent implements OnInit {
   constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
+    // when return from detail page(cancel or save), selected the product in 'memory'
     this.productService.selectedProductChanges$.subscribe(
       selectedProduct => this.selectedProduct = selectedProduct
     );
