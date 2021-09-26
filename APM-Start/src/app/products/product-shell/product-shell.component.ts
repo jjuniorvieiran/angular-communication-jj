@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 import { ProductService } from '../product.service';
 
 @Component({
     templateUrl: './product-shell.component.html'
 })
-export class ProductShellComponent implements OnInit {
+export class ProductShellComponent implements OnInit, OnDestroy {
     pageTitle: string = 'Products';
     monthCount: number;
     sub: Subscription;

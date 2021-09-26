@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { ProductService } from '../product.service';
 import { IProduct } from '../product';
 import { Subscription } from 'rxjs/Subscription';
@@ -7,9 +7,8 @@ import { Subscription } from 'rxjs/Subscription';
     selector: 'pm-product-shell-detail',
     templateUrl: './product-shell-detail.component.html'
 })
-export class ProductShellDetailComponent implements OnInit {
+export class ProductShellDetailComponent implements OnInit, OnDestroy {
     pageTitle: string = 'Product Detail';
-    
     product: IProduct | null;
     sub: Subscription;
 
@@ -24,5 +23,4 @@ export class ProductShellDetailComponent implements OnInit {
     ngOnDestroy(): void {
         this.sub.unsubscribe();
     }
-
 }
